@@ -1,0 +1,251 @@
+#!perl -w
+
+# Copyright 2009, 2010 Kevin Ryde
+
+# This file is part of Distlinks.
+#
+# Distlinks is free software; you can redistribute it and/or modify it under
+# the terms of the GNU General Public License as published by the Free
+# Software Foundation; either version 3, or (at your option) any later
+# version.
+#
+# Distlinks is distributed in the hope that it will be useful, but WITHOUT
+# ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or
+# FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License for
+# more details.
+#
+# You should have received a copy of the GNU General Public License along
+# with Distlinks.  If not, see <http://www.gnu.org/licenses/>.
+
+use 5.010;
+use strict;
+use warnings;
+use App::Distlinks;
+
+our $VERSION = 1;
+exit App::Distlinks->command_line();
+
+__END__
+
+=head1 NAME
+
+distlinks -- check URL links, with database cache
+
+=head1 SYNOPSIS
+
+ distlinks [--options] filename-or-dirname...
+
+=head1 DESCRIPTION
+
+Distlinks checks URLs found in files or a directory tree of files.  An
+SQLite database avoids rechecking links between multiple program runs.  It's
+a bit rough yet but is good for checking everything in a software
+distribution or similar.
+
+Various file types are recognised and read appropriately to extract text
+parts.
+
+=over
+
+=item *
+
+F<.gz> and F<.bz2> gzip or bzip2.
+
+=item *
+
+F<.tar> and F<.tar.gz> Unix tar.
+
+=item *
+
+F<.zip>
+
+=item *
+
+Text with UTF-16 or UTF-32 BOM.
+
+=item *
+
+Image files per C<Image::ExifTool>, so the text parts of PNG, JPEG, etc.
+
+=item *
+
+F<.mo> message catalogue.
+
+=item *
+
+Executables ELF, MS-DOS, etc per C<File::Type> (such files skipped).
+
+=back
+
+URLs are distilled from text with free-form matching so they can be in plain
+text, program code, etc.  The following specific forms are recognised,
+
+=over
+
+=item *
+
+Angles C<< <http://foo.com> >> and C<< <URL:http://foo.com> >> as sometimes
+recommended for mail messages etc.
+
+=item *
+
+Quotes C<< `http://foo.com' >> per Emacs docstrings.
+
+=item *
+
+Bare C<< foo.com/index.html >> taken to be C<http:>.
+
+=item *
+
+Texinfo C<@url{http://foo.com}>.
+
+=item *
+
+HTML C<href="foo.html">, interpreted relative to a C<< <base> >> or the file
+itself.
+
+=item *
+
+Variables C<$FOO> in the URL taken to be program code etc and not checked.
+
+=back
+
+=head1 COMMAND-LINE OPTIONS
+
+The command line options are
+
+=over 4
+
+=item -V
+
+=item --verbose
+
+=item --verbose=N
+
+Print some diagnostics about what's being done.  With --verbose=2 or
+--verbose=3 print some technical details too.  Eg.
+
+    distlinks --verbose
+
+=item --version
+
+Print the distlinks program version number.  With C<--verbose=2> also print
+version numbers of some modules used.
+
+=back
+
+=head1 CHECKING
+
+=over 4
+
+=item news
+
+Newsgroup references like "news:some.group.name" are checked by asking the
+news server whether the group exists.  The default server ends is per
+C<Net::NNTP>, which means an C<NNTPSERVER> or C<NEWSHOST> environment
+variable, or a C<Net::Config> setup.  For convenience C<distlinks> tries
+"localhost" if none of those are set.
+
+=back
+
+=head1 ENVIRONMENT VARIABLES
+
+=over 4
+
+=item C<NNTPSERVER>
+
+=item C<NEWSHOST>
+
+News server host name or IP number.
+
+=back
+
+=head1 FILES
+
+=over 4
+
+=item F<~/.distlinks.sqdb>
+
+SQLite database of information kept about checked URLs.
+
+=item F</etc/libnet.cfg>
+
+=item F</etc/perl/Net/libnet.cfg>
+
+C<Net::Config> configuration, for news server.
+
+=back
+
+=head1 SEE ALSO
+
+L<Net::Config>
+
+L<chklinks>
+
+=head1 HOME PAGE
+
+L<http://user42.tuxfamily.org/distlinks/index.html>
+
+=head1 LICENSE
+
+Copyright 2009, 2010 Kevin Ryde
+
+Distlinks is free software; you can redistribute it and/or modify it under
+the terms of the GNU General Public License as published by the Free
+Software Foundation; either version 3, or (at your option) any later
+version.
+
+Distlinks is distributed in the hope that it will be useful, but WITHOUT ANY
+WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+FOR A PARTICULAR PURPOSE.  See the GNU General Public License for more
+details.
+
+You should have received a copy of the GNU General Public License along with
+Distlinks.  If not, see L<http://www.gnu.org/licenses/>.
+
+=cut
+
+
+
+
+$distfile = File::Spec->rel2abs ($distfile);
+
+my $tempfile = '/tmp/linkchecker-dist.html';
+open my $tempfh, '>:encoding(utf-8)', $tempfile or die;
+# my $tempfh = File::Temp->new (SUFFIX => '.html');
+if ($verbose) {  print STDERR "temp file: $tempfile\n"; }
+
+print $tempfh <<'HERE';
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Emacs Links</title>
+</head>
+<body>
+HERE
+
+find (\&wanted, '.');
+my $count = 0;
+
+sub emit {
+  my ($url, $filename, $linenum) = @_;
+  $count++;
+  print $tempfh <<"HERE";
+<p> $filename line $linenum
+<br> <a href="$url">
+              $url </a>
+</p>
+HERE
+}
+
+print $tempfh <<'HERE';
+
+</body>
+</html>
+HERE
+
+print "total $count\n";
+system 'linkchecker', $tempfile;
+
+exit 0;

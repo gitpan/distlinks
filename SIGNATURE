@@ -1,0 +1,65 @@
+This file contains message digests of all files listed in MANIFEST,
+signed via the Module::Signature module, version 0.63.
+
+To verify the content in this distribution, first make sure you have
+Module::Signature installed, then type:
+
+    % cpansign -v
+
+It will check each file's integrity, as well as the signature's
+validity.  If "==> Signature verified OK! <==" is not displayed,
+the distribution may already have been compromised, and you should
+not run its Makefile.PL or Build.PL.
+
+-----BEGIN PGP SIGNED MESSAGE-----
+Hash: SHA1
+
+SHA1 804c19f45e6e3550931faa5b815086e3d3462d90 Changes
+SHA1 6c110fa320bc23ce2a68d646b2f4b60f6cc41ee5 MANIFEST
+SHA1 9f057ed3ba7d042426c4d899f7685b4ae05076b2 MANIFEST.SKIP
+SHA1 36fded6e05db013aef27591219f5a460fc3f11e3 META.yml
+SHA1 1112f712b2d5812a0efbe9851626f0cd7e37d8a7 Makefile.PL
+SHA1 e2af136322ffb225d261dc95f54b983b1ff01498 debian/changelog
+SHA1 ac3478d69a3c81fa62e60f5c3696165a4e5e6ac4 debian/compat
+SHA1 0a0547d71ee0ca1b83ab36197cba3e6a602ea056 debian/control
+SHA1 3cd299a61fc325ed997a7943493824b79b199ab4 debian/copyright
+SHA1 96e0dd22583aaefd7d06bfa1670bbedfa2cc06d3 debian/rules
+SHA1 61652cd1568dcf2614df833eba241755eee34e89 debian/source/format
+SHA1 eabecb5e038074036950b8b2255913086c76d177 debian/watch
+SHA1 9a85577d07cd234e4c67b5fa3bedce86e250ea4f devel/PodLinkCheck.pm
+SHA1 db27b62365e977a1990644ce1094aac616212e86 devel/circdir.pl
+SHA1 da480e90c2e19902187f6a5db39185fcf85ee595 devel/filetype.pl
+SHA1 3cec40adfc8795a492eaccd3b04605eeddd64bb8 devel/foo.html
+SHA1 9bcd82f32f7c97e70f4853bc51b01c42bdff00aa devel/head.pl
+SHA1 a3a24eceea11d3d28c94ee4726cb27709e01268a devel/regexp.pl
+SHA1 4df4941cffa04c812ba5031eaaeb9b843f81f912 devel/unused.pl
+SHA1 8925d807307b4415bd2bc1e45e99e831e5bf0086 devel/url.pl
+SHA1 5c311eba6320667520bd5670352ca68e371f5346 distlinks
+SHA1 f75406d505a80acba9f8bfda5c994f10330d80be inc/MyMakeMakerExtras.pm
+SHA1 692a1ddc2ca6b98cac7b48ea40bc1ac1509e8ed9 inc/my_pod2html
+SHA1 3daa517d12c196fee368ef5a7d4d12a53eb9803d junk/URIFind.pm
+SHA1 0b8402359d6a269533bb171518013ec5b2416948 lib/App/Distlinks.pm
+SHA1 d1b057615360270ebf076ce102b6b1070fe1f6c5 lib/App/Distlinks/DBI.pm
+SHA1 43c0192e675cf86c826ccc24d95bf96469f81151 lib/App/Distlinks/DBIarray.pm
+SHA1 df51c42007eb91b39ba5cbe4c396e7b1369de428 lib/App/Distlinks/FileFind.pm
+SHA1 7fc7adf745f3b9eb89257ccc4c056bf8721230d3 lib/App/Distlinks/URInFiles.pm
+SHA1 35b23f4bcbc7eda94a37033101f7ae160327b977 lib/App/Distlinks/URIterator.pm
+SHA1 9127f78a0dfa04976acbb979dd7862ef59a74c58 t/0-META-read.t
+SHA1 37abd43b41068804ea4bb099fdd89af21be82926 t/0-Test-DistManifest.t
+SHA1 8f93fb4c8f0424a4442cc93c9a2e86342ef55281 t/0-Test-Pod.t
+SHA1 1de8f07883f6bf1a2ef79f2cb8adf1deb3f61cee t/0-Test-Synopsis.t
+SHA1 fb517c2fae5ddac559318bf6a224949115ea3129 t/0-Test-YAML-Meta.t
+SHA1 c84fa2f39a57885c647ebb69a456f3129de706c1 t/0-exe-shebang.t
+SHA1 947ad26f38ddd3b761bef55f93fb12efacdcb312 t/DBI.t
+SHA1 59d0144c1f0dc9ec45d340e8cbc55948e9cad2c2 t/Distlinks.t
+SHA1 b98ec63aaa140101fe850d117c483d88b25a32a9 t/MyTestHelpers.pm
+SHA1 46785c94f993f2fd7099c82a099d41d58d4224ad t/URInFiles.t
+SHA1 95700f7ffcd46907c97c4cb9124eb07b53d4c355 t/URIterator.t
+SHA1 161c33312e766bba95ef189a88aa707b14bc4ece t/bom-utf16le.txt
+-----BEGIN PGP SIGNATURE-----
+Version: GnuPG v1.4.10 (GNU/Linux)
+
+iD8DBQFMcvFVLFMCIV9q3ToRAoJSAKCeXzHA+kexd7Xsc5ZTbSU7OfTIZACgkM//
+X0QBlQ9tbexAKnBXk3eQvKQ=
+=y31r
+-----END PGP SIGNATURE-----
