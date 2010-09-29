@@ -28,7 +28,7 @@ BEGIN { MyTestHelpers::nowarnings() }
 require App::Distlinks::URIterator;
 
 {
-  my $want_version = 1;
+  my $want_version = 2;
   is ($App::Distlinks::URIterator::VERSION, $want_version, 'VERSION variable');
   is (App::Distlinks::URIterator->VERSION,  $want_version, 'VERSION class method');
 

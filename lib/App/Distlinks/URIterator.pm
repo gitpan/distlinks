@@ -22,7 +22,7 @@ use warnings;
 # uncomment this to run the ### lines
 #use Smart::Comments;
 
-our $VERSION = 1;
+our $VERSION = 2;
 
 # filename => 
 # content  =>
@@ -53,7 +53,7 @@ my $urlchar        =     qr/\\?[^$urlchar_not]/;
 my $texinfo = qr<(?<texinfo>\@ur(ef|l)\{(?<url>([^\r\n,{}]|\{\})+)(,.*)?\})>o;
 my $quoted  = qr<`(?<url>$scheme_or_host[^' \t\r\n]*)'>o;
 my $angles  = qr/<(?<url>$scheme_or_host[^> \t\r\n]*)>/o;
-my $uangle  = qr/<URL:(?<url>[[:alnum:]][^> \t\r\n]*)>/o;
+my $uangle  = qr/<UR[IL]:(?<url>[[:alnum:]][^> \t\r\n]*)>/o;
 my $bare    = qr{(?<url>$scheme$urlchar*$urlchar_last)}o;
 my $href    = qr{(?<href>href=(\'(?<url>[^\'\n]*?)\'|\"(?<url>[^\"\n]*?)\"))};
 

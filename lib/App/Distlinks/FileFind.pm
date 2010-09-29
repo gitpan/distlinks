@@ -22,7 +22,7 @@ use warnings;
 use File::Spec;
 use Iterator::Simple;
 
-our $VERSION = 1;
+our $VERSION = 2;
 
 use constant _false => 0;
 

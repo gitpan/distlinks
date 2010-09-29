@@ -24,7 +24,7 @@ use List::MoreUtils;
 use base 'Class::Singleton';
 use base 'DBI';
 
-our $VERSION = 1;
+our $VERSION = 2;
 
 my $verbose = 0;
 

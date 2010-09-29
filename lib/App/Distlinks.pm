@@ -29,7 +29,7 @@ use App::Distlinks;
 # uncomment this to run the ### lines
 #use Smart::Comments;
 
-our $VERSION = 1;
+our $VERSION = 2;
 
 my %exclude_hosts
   = (
