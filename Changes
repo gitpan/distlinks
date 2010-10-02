@@ -17,6 +17,9 @@ with Distlinks.  If not, see <http://www.gnu.org/licenses/>.
 
 
 
+Version 3, October 2010
+    - newer List::MoreUtils to avoid some tests failures
+
 Version 2, September 2010
     - test manifest only as an author test
 

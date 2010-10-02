@@ -1,5 +1,5 @@
 This file contains message digests of all files listed in MANIFEST,
-signed via the Module::Signature module, version 0.63.
+signed via the Module::Signature module, version 0.66.
 
 To verify the content in this distribution, first make sure you have
 Module::Signature installed, then type:
@@ -14,19 +14,19 @@ not run its Makefile.PL or Build.PL.
 -----BEGIN PGP SIGNED MESSAGE-----
 Hash: SHA1
 
-SHA1 1947ef4d1e36d96fc1d3244cf2126a71c1e4d0e7 Changes
+SHA1 df162377908f48ed339689b08164509fb1ba5c1c Changes
 SHA1 0d1a088513f7f16a165b51a0c6135aa546625b67 MANIFEST
 SHA1 e6e7c2904ea5d300c0ddf70fc5a80f5005229aa9 MANIFEST.SKIP
-SHA1 bb373f2f701688f8195ce400d9dc1e4c4c40daa1 META.yml
-SHA1 1112f712b2d5812a0efbe9851626f0cd7e37d8a7 Makefile.PL
-SHA1 9e0dd5181dd2baf980710a8695ccdb8c431f7844 debian/changelog
+SHA1 e408ec2edc6973a33ef44f7cd2b3a7c9a06a2b37 META.yml
+SHA1 129f9232827b759125ac1ce62bcef10191b5e622 Makefile.PL
+SHA1 7801b4ec5ff63795170b204261d1e9340278882e debian/changelog
 SHA1 ac3478d69a3c81fa62e60f5c3696165a4e5e6ac4 debian/compat
-SHA1 0a0547d71ee0ca1b83ab36197cba3e6a602ea056 debian/control
+SHA1 3a7b3aefec5de288f957758c8936d697c56cd492 debian/control
 SHA1 3cd299a61fc325ed997a7943493824b79b199ab4 debian/copyright
 SHA1 96e0dd22583aaefd7d06bfa1670bbedfa2cc06d3 debian/rules
 SHA1 61652cd1568dcf2614df833eba241755eee34e89 debian/source/format
 SHA1 eabecb5e038074036950b8b2255913086c76d177 debian/watch
-SHA1 fcefbe46774e843af0781623783b275555e0fe31 devel/PodLinkCheck.pm
+SHA1 450eae5c93b991576c5f7b4b7d42e47c89294ccd devel/PodLinkCheck.pm
 SHA1 db27b62365e977a1990644ce1094aac616212e86 devel/circdir.pl
 SHA1 da480e90c2e19902187f6a5db39185fcf85ee595 devel/filetype.pl
 SHA1 3cec40adfc8795a492eaccd3b04605eeddd64bb8 devel/foo.html
@@ -34,21 +34,21 @@ SHA1 9bcd82f32f7c97e70f4853bc51b01c42bdff00aa devel/head.pl
 SHA1 a3a24eceea11d3d28c94ee4726cb27709e01268a devel/regexp.pl
 SHA1 4df4941cffa04c812ba5031eaaeb9b843f81f912 devel/unused.pl
 SHA1 8925d807307b4415bd2bc1e45e99e831e5bf0086 devel/url.pl
-SHA1 d71433f32d5c196b57e10137bd71b8657519744a distlinks
+SHA1 3e8ef2bb75dc0ceb0cd93e6459598769b9ccfc09 distlinks
 SHA1 3cf3345a9177dbe362dfc8fbf192272f4a611ca8 inc/MyMakeMakerExtras.pm
 SHA1 692a1ddc2ca6b98cac7b48ea40bc1ac1509e8ed9 inc/my_pod2html
 SHA1 3daa517d12c196fee368ef5a7d4d12a53eb9803d junk/URIFind.pm
-SHA1 b76beac32de84ce9dceb37ee965c6ac6223ad7a4 lib/App/Distlinks.pm
-SHA1 6eeb5f884971792bcac05c68b2a11ac502d4a0d1 lib/App/Distlinks/DBI.pm
-SHA1 bad56d46827cd18e020e660f2f4387243c30855e lib/App/Distlinks/DBIarray.pm
-SHA1 96d8e5e4d79df6d0eeb8437933ac9323f721a4cb lib/App/Distlinks/FileFind.pm
-SHA1 32138216727aad75590df29eda339e700ebae415 lib/App/Distlinks/URInFiles.pm
-SHA1 4117808b21d70cf6910062f58f781f2248f89d21 lib/App/Distlinks/URIterator.pm
-SHA1 4473765235a915cdd10815d6cd269fda145f4ba2 t/DBI.t
-SHA1 c81b534b1f54858c360dd4545bd7a6dfcd05cae4 t/Distlinks.t
+SHA1 8a10f632bd8f97b47ef66858b3274f535c2e28ec lib/App/Distlinks.pm
+SHA1 79a9d6feac1521191977d113a15e1b8583f631ec lib/App/Distlinks/DBI.pm
+SHA1 2c3c7205f79a41be184ba67dc121d14aec007fe1 lib/App/Distlinks/DBIarray.pm
+SHA1 1303221e573ddea40747037ab758382c10d77c5c lib/App/Distlinks/FileFind.pm
+SHA1 e9cadf4682036c2377cc3defd8d4b42d15030b20 lib/App/Distlinks/URInFiles.pm
+SHA1 e5f913c75407f3fd083a7433930fed63290a282b lib/App/Distlinks/URIterator.pm
+SHA1 3a6d4cff454cb763ec2b00d84b42df133ccd9fcd t/DBI.t
+SHA1 f0b069fdc4e00d2ebe3fd6e162440779904247e7 t/Distlinks.t
 SHA1 5e5680b471811244fe93571efc23e7b6089cac3b t/MyTestHelpers.pm
-SHA1 b2b316da2da0235ff8829b153477745de4d25eea t/URInFiles.t
-SHA1 dd2a1883454d38a95d8b7fdefc0f92ac2094cc59 t/URIterator.t
+SHA1 0d2fe4e0c125ea1ab4d8545be15f3aebf4fab3cd t/URInFiles.t
+SHA1 9414eb2ce6cc91102e150dbafc3b8b0819078163 t/URIterator.t
 SHA1 161c33312e766bba95ef189a88aa707b14bc4ece t/bom-utf16le.txt
 SHA1 9127f78a0dfa04976acbb979dd7862ef59a74c58 xt/0-META-read.t
 SHA1 37abd43b41068804ea4bb099fdd89af21be82926 xt/0-Test-DistManifest.t
@@ -59,7 +59,7 @@ SHA1 c84fa2f39a57885c647ebb69a456f3129de706c1 xt/0-exe-shebang.t
 -----BEGIN PGP SIGNATURE-----
 Version: GnuPG v1.4.10 (GNU/Linux)
 
-iD8DBQFMo7f3LFMCIV9q3ToRAu3pAJ0VeogLImkzjWZrdVMhXkKIlSecrwCeP1CE
-5fVMb5W/KLsDH87F9+Eqbi0=
-=I2nA
+iD8DBQFMpoooLFMCIV9q3ToRAmQJAKCPxRypFPRSNPtXyIEQ1fmrKgl4hACdGBrn
+GGBuzZuzae5rOces/oyvlSs=
+=SweB
 -----END PGP SIGNATURE-----

@@ -28,7 +28,7 @@ BEGIN { MyTestHelpers::nowarnings() }
 require App::Distlinks::DBI;
 
 {
-  my $want_version = 2;
+  my $want_version = 3;
   is ($App::Distlinks::DBI::VERSION, $want_version, 'VERSION variable');
   is (App::Distlinks::DBI->VERSION,  $want_version, 'VERSION class method');
 

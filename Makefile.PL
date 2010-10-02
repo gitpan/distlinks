@@ -52,7 +52,7 @@ MyMakeMakerExtras::WriteMakefile
                     'Image::ExifTool' => 0,
                     'IO::String'           => 0,
                     'Iterator::Simple' => 0,
-                    'List::MoreUtils' => 0,
+                    'List::MoreUtils' => '0.24', # 0.24 for stack growing, maybe
                     'Locale::TextDomain' => 0,
                     'Perl6::Slurp' => 0,
 
@@ -79,7 +79,7 @@ MyMakeMakerExtras::WriteMakefile
         optional_features
         => { maximum_tests
              => { description => 'Have "make test" do as much as possible.',
-                  requires => { 
+                  requires => {
                               },
                 },
              maximum_devel

@@ -36,7 +36,7 @@ Bugs: mailto:user42@zip.com.au
 
 Package: distlinks
 Architecture: all
-Depends: perl (>= 5.10), libiterator-simple-perl, libwww-mechanize-perl, libfile-type-perl, libhtml-parser-perl, liburi-perl, libwww-perl (>= 5.819), libio-string-perl, libregexp-common-perl, libdbi-perl, libclass-singleton-perl, libdbd-sqlite3-perl, liblist-moreutils-perl, libimage-exiftool-perl, libintl-perl, libfile-homedir-perl, libconstant-defer-perl, libfile-chdir-perl, liburi-find-perl, libarchive-zip-perl, libperl6-slurp-perl, ${perl:Depends}, ${misc:Depends}
+Depends: perl (>= 5.10), libiterator-simple-perl, libwww-mechanize-perl, libfile-type-perl, libhtml-parser-perl, liburi-perl, libwww-perl (>= 5.819), libio-string-perl, libregexp-common-perl, libdbi-perl, libclass-singleton-perl, libdbd-sqlite3-perl, liblist-moreutils-perl (>= 0.24), libimage-exiftool-perl, libintl-perl, libfile-homedir-perl, libconstant-defer-perl, libfile-chdir-perl, liburi-find-perl, libarchive-zip-perl, libperl6-slurp-perl, ${perl:Depends}, ${misc:Depends}
 Suggests: libintl-xs-perl
 Description: Post RSS articles to local newsgroups
  Distlinks reads specified RSS feeds and posts items to local
