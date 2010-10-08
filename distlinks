@@ -22,7 +22,7 @@ use strict;
 use warnings;
 use App::Distlinks;
 
-our $VERSION = 3;
+our $VERSION = 4;
 exit App::Distlinks->command_line();
 
 __END__
@@ -158,6 +158,11 @@ variable, or a C<Net::Config> setup.  For convenience C<distlinks> tries
 
 News server host name or IP number.
 
+=item C<TMPDIR>
+
+Temporary directory for untarring archives etc, per C<File::Temp> and
+C<File::Spec>.
+
 =back
 
 =head1 FILES
@@ -175,6 +180,12 @@ SQLite database of information kept about checked URLs.
 C<Net::Config> configuration, for news server.
 
 =back
+
+=head1 BUGS
+
+A F<.tar> or similar archive is extracted into a directory under F</tmp> so
+that actual files can be reported on, but those temporary directories
+created are never removed.
 
 =head1 SEE ALSO
 

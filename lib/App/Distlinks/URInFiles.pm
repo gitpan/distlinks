@@ -28,7 +28,7 @@ use Locale::TextDomain ('App-Distlinks');
 # uncomment this to run the ### lines
 #use Smart::Comments;
 
-our $VERSION = 3;
+our $VERSION = 4;
 
 # my %exclude_dirs = (# 'b'    => 1,
 #                     'blib' => 1,
@@ -231,6 +231,7 @@ sub untar {
     local $File::chdir::CWD = $tempdir;
     $tar->extract;
   }
+  $self->chmod_tree_readonly ($tempdir);
   return $tempdir;
 }
 
@@ -263,7 +264,23 @@ sub unzip {
               error    => $ret);
     return;
   }
+  $self->chmod_tree_readonly ($tempdir);
   return $tempdir;
+}
+
+sub chmod_tree_readonly {
+  my ($self, $tempdir) = @_;
+  require File::Find::Iterator;
+  my $find = File::Find::Iterator->create (dir => [$tempdir]);
+  my $mask = ~umask();
+  while (my $filename = $find->next) {
+    my $mode = (stat $filename)[2] & ~0222; # no write perm
+    if (chmod($mode, $filename) != 1) {
+      print __x("Oops, cannot set readonly on {filename}: {error}\n",
+                filename => $filename,
+                error    => $!);
+    }
+  }
 }
 
 

@@ -17,6 +17,9 @@ with Distlinks.  If not, see <http://www.gnu.org/licenses/>.
 
 
 
+Version 4, October 2010
+    - untar readonly to prevent accidental editing
+
 Version 3, October 2010
     - newer List::MoreUtils to avoid some tests failures
 

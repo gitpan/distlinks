@@ -27,7 +27,7 @@ BEGIN { MyTestHelpers::nowarnings() }
 
 require App::Distlinks;
 {
-  my $want_version = 3;
+  my $want_version = 4;
   is ($App::Distlinks::VERSION, $want_version, 'VERSION variable');
   is (App::Distlinks->VERSION,  $want_version, 'VERSION class method');
 
