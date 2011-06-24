@@ -1,4 +1,4 @@
-# Copyright 2009, 2010 Kevin Ryde
+# Copyright 2009, 2010, 2011 Kevin Ryde
 
 # This file is part of Distlinks.
 #
@@ -20,9 +20,9 @@ use strict;
 use warnings;
 
 # uncomment this to run the ### lines
-#use Smart::Comments;
+#use Devel::Comments;
 
-our $VERSION = 4;
+our $VERSION = 5;
 
 # filename => 
 # content  =>
@@ -111,6 +111,7 @@ sub next {
 
     require URI;
     my $uri;
+    ### $base
     if (defined $base) {
       $uri = URI->new_abs ($url, $base);
     } else {

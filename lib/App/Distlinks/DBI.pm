@@ -1,4 +1,4 @@
-# Copyright 2009, 2010 Kevin Ryde
+# Copyright 2009, 2010, 2011 Kevin Ryde
 
 # This file is part of Distlinks.
 #
@@ -24,7 +24,7 @@ use List::MoreUtils;
 use base 'Class::Singleton';
 use base 'DBI';
 
-our $VERSION = 4;
+our $VERSION = 5;
 
 my $verbose = 0;
 
@@ -151,12 +151,10 @@ sub write_page {
        my $url = $info->{'url'};
        $url = URI->new($url)->canonical;
 
-       {
-         my $sth  = $dbh->prepare_cached ('DELETE FROM anchor WHERE url = ?');
+       { my $sth  = $dbh->prepare_cached ('DELETE FROM anchor WHERE url = ?');
          $sth->execute ($url);
        }
-       {
-         my $sth  = $dbh->prepare_cached ('DELETE FROM page WHERE url = ?');
+       { my $sth  = $dbh->prepare_cached ('DELETE FROM page WHERE url = ?');
          $sth->execute ($url);
        }
 
@@ -183,34 +181,39 @@ sub write_page {
            $sth->execute ($url, $anchor);
          }
        }
-
      });
 }
 
-my $expire_days = 30;
+my $expire_days = 30000;
 
 sub expire {
-  my ($dbh) = @_;
+  my ($dbh, $always_print) = @_;
+  # always expire file:// urls so as to recheck on next run
+  $dbh->do ('DELETE FROM page WHERE url LIKE \'file://%\'');
+
   my $expired = $dbh->do
     ('DELETE FROM page WHERE timestamp < ? OR timestamp > ?',
      undef,
      timestamp_range ($expire_days * 86400));
   $expired += 0; # numize '0E0' return when none deleted
 
-  my ($kept) = $dbh->selectrow_array('SELECT COUNT(*) FROM page');
-  my ($anchors) = $dbh->selectrow_array('SELECT COUNT(*) FROM anchor');
-  print "expired $expired links, kept $kept (with $anchors anchors)\n";
+  if ($expired || $always_print) {
+    my ($kept) = $dbh->selectrow_array('SELECT COUNT(*) FROM page');
+    my ($anchors) = $dbh->selectrow_array('SELECT COUNT(*) FROM anchor');
+    print "expired $expired links, kept $kept (with $anchors anchors)\n";
+  }
   return $expired;
 }
 
 sub vacuum {
   my ($dbh) = @_;
   my $db_filename = $dbh->{'private_App_Distlinks'}->{'filename'};
-  my $oldsize = -s $db_filename;
+  my $old_size = -s $db_filename;
+  my $old_kbytes = int (($old_size + 1023) / 1024);
   $dbh->do ('VACUUM');
-  my $newsize = -s $db_filename;
-  my $kbytes = int (($newsize + 1023) / 1024);
-  print "vacuum database to now ${kbytes}k\n";
+  my $new_size = -s $db_filename;
+  my $new_kbytes = int (($new_size + 1023) / 1024);
+  print "vacuum database to now ${new_kbytes}k (was ${old_kbytes}k)\n";
 }
 
 sub recheck {

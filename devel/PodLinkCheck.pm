@@ -1,19 +1,19 @@
-# Copyright 2010 Kevin Ryde
+# Copyright 2010, 2011 Kevin Ryde
 
-# This file is part of Perl-Critic-Pulp.
+# This file is part of Distlinks.
 
-# Perl-Critic-Pulp is free software; you can redistribute it and/or modify
+# Distlinks is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by the
 # Free Software Foundation; either version 3, or (at your option) any later
 # version.
 #
-# Perl-Critic-Pulp is distributed in the hope that it will be useful, but
+# Distlinks is distributed in the hope that it will be useful, but
 # WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY
 # or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License
 # for more details.
 #
 # You should have received a copy of the GNU General Public License along
-# with Perl-Critic-Pulp.  If not, see <http://www.gnu.org/licenses/>.
+# with Distlinks.  If not, see <http://www.gnu.org/licenses/>.
 
 
 package Perl::Critic::Policy::Documentation::PodLinkCheck;
@@ -26,7 +26,7 @@ use Perl::Critic::Utils;
 # uncomment this to run the ### lines
 #use Smart::Comments;
 
-our $VERSION = 4;
+our $VERSION = 5;
 
 use constant supported_parameters => ();
 use constant default_severity     => $Perl::Critic::Utils::SEVERITY_LOW;
@@ -288,19 +288,19 @@ http://user42.tuxfamily.org/perl-critic-pulp/index.html
 
 =head1 COPYRIGHT
 
-Copyright 2009, 2010 Kevin Ryde
+Copyright 2009, 2010, 2011 Kevin Ryde
 
-Perl-Critic-Pulp is free software; you can redistribute it and/or modify it
+Distlinks is free software; you can redistribute it and/or modify it
 under the terms of the GNU General Public License as published by the Free
 Software Foundation; either version 3, or (at your option) any later
 version.
 
-Perl-Critic-Pulp is distributed in the hope that it will be useful, but
+Distlinks is distributed in the hope that it will be useful, but
 WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY
 or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License for
 more details.
 
 You should have received a copy of the GNU General Public License along with
-Perl-Critic-Pulp.  If not, see <http://www.gnu.org/licenses/>.
+Distlinks.  If not, see <http://www.gnu.org/licenses/>.
 
 =cut

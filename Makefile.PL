@@ -1,6 +1,6 @@
 #!/usr/bin/perl
 
-# Copyright 2009, 2010 Kevin Ryde
+# Copyright 2009, 2010, 2011 Kevin Ryde
 
 # This file is part of Distlinks.
 #
@@ -72,24 +72,25 @@ MyMakeMakerExtras::WriteMakefile
 
                    },
 
-   META_MERGE
-   => { resources
-        => { homepage => 'http://user42.tuxfamily.org/distlinks/index.html',
-           },
-        optional_features
-        => { maximum_tests
-             => { description => 'Have "make test" do as much as possible.',
-                  requires => {
-                              },
-                },
-             maximum_devel
-             => { description => 'Stuff used variously for development.',
-                  requires => { 'File::MMagic'   => 0,
-                                'Devel::FindRef' => 0,
-                                'Devel::Peek'    => 0,
-                                'LWP::UserAgent' => 0,
-                              },
-                },
-           },
+   META_MERGE =>
+   { resources =>
+     { homepage => 'http://user42.tuxfamily.org/distlinks/index.html',
+     },
+     optional_features =>
+     {
+      # maximum_tests =>
+      #        { description => 'Have "make test" do as much as possible.',
+      #          requires => {
+      #                      },
+      #        },
+      maximum_devel =>
+      { description => 'Stuff used variously for development.',
+        requires => { 'File::MMagic'   => 0,
+                      'Devel::FindRef' => 0,
+                      'Devel::Peek'    => 0,
+                      'LWP::UserAgent' => 0,
+                    },
       },
+     },
+   },
   );

@@ -1,6 +1,6 @@
 #!perl -w
 
-# Copyright 2009, 2010 Kevin Ryde
+# Copyright 2009, 2010, 2011 Kevin Ryde
 
 # This file is part of Distlinks.
 #
@@ -22,7 +22,7 @@ use strict;
 use warnings;
 use App::Distlinks;
 
-our $VERSION = 4;
+our $VERSION = 5;
 exit App::Distlinks->command_line();
 
 __END__
@@ -73,7 +73,7 @@ F<.mo> message catalogue.
 
 =item *
 
-Executables ELF, MS-DOS, etc per C<File::Type> (such files skipped).
+Skip executables ELF, MS-DOS, etc per C<File::Type>.
 
 =back
 
@@ -106,7 +106,7 @@ itself.
 
 =item *
 
-Variables C<$FOO> in the URL taken to be program code etc and not checked.
+Skip variables C<$FOO> in URLs, taken to be program code etc.
 
 =back
 

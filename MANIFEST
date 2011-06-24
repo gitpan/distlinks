@@ -7,6 +7,7 @@ debian/rules
 debian/source/format
 debian/watch
 devel/circdir.pl
+devel/DBIarray.pm
 devel/filetype.pl
 devel/foo.html
 devel/head.pl
@@ -20,7 +21,6 @@ inc/MyMakeMakerExtras.pm
 junk/URIFind.pm
 lib/App/Distlinks.pm
 lib/App/Distlinks/DBI.pm
-lib/App/Distlinks/DBIarray.pm
 lib/App/Distlinks/FileFind.pm
 lib/App/Distlinks/URInFiles.pm
 lib/App/Distlinks/URIterator.pm
@@ -35,7 +35,10 @@ t/MyTestHelpers.pm
 t/URInFiles.t
 t/URIterator.t
 xt/0-exe-shebang.t
+xt/0-file-is-part-of.t
 xt/0-META-read.t
+xt/0-no-debug-left-on.t
+xt/0-Test-ConsistentVersion.t
 xt/0-Test-DistManifest.t
 xt/0-Test-Pod.t
 xt/0-Test-Synopsis.t

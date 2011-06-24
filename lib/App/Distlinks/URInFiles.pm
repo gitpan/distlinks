@@ -1,4 +1,4 @@
-# Copyright 2010 Kevin Ryde
+# Copyright 2010, 2011 Kevin Ryde
 
 # This file is part of Distlinks.
 #
@@ -26,9 +26,9 @@ use Perl6::Slurp;
 use Locale::TextDomain ('App-Distlinks');
 
 # uncomment this to run the ### lines
-#use Smart::Comments;
+#use Devel::Comments;
 
-our $VERSION = 4;
+our $VERSION = 5;
 
 # my %exclude_dirs = (# 'b'    => 1,
 #                     'blib' => 1,
@@ -68,8 +68,8 @@ sub new {
 sub _make_finder {
   my ($class, @inputs) = @_;
   require File::Find::Iterator;
-  my $find = File::Find::Iterator->create (dir => \@inputs,
-                                           filter => \&_is_not_excluded);
+  File::Find::Iterator->create (dir => \@inputs,
+                                filter => \&_is_not_excluded);
 }
 sub _is_not_excluded {
   return (! -d
@@ -106,7 +106,7 @@ sub next {
     $self->{'urit'} = App::Distlinks::URIterator->new
       (filename => $filename,
        content  => $content,
-       base     => URI::file->new ($filename));
+       base     => URI::file->new_abs($filename));
   }
 }
 
@@ -272,7 +272,6 @@ sub chmod_tree_readonly {
   my ($self, $tempdir) = @_;
   require File::Find::Iterator;
   my $find = File::Find::Iterator->create (dir => [$tempdir]);
-  my $mask = ~umask();
   while (my $filename = $find->next) {
     my $mode = (stat $filename)[2] & ~0222; # no write perm
     if (chmod($mode, $filename) != 1) {

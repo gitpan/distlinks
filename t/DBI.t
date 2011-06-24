@@ -1,6 +1,6 @@
 #!/usr/bin/perl -w
 
-# Copyright 2009, 2010 Kevin Ryde
+# Copyright 2009, 2010, 2011 Kevin Ryde
 
 # This file is part of Distlinks.
 #
@@ -28,7 +28,7 @@ BEGIN { MyTestHelpers::nowarnings() }
 require App::Distlinks::DBI;
 
 {
-  my $want_version = 4;
+  my $want_version = 5;
   is ($App::Distlinks::DBI::VERSION, $want_version, 'VERSION variable');
   is (App::Distlinks::DBI->VERSION,  $want_version, 'VERSION class method');
 
@@ -52,16 +52,19 @@ require App::Distlinks::DBI;
   my $not_anchor = 'nosuchanchor';
 
   $dbh->do('DELETE FROM page WHERE url=?', undef, $url);
+  # not sure if can rely on DELETE CASCADE ...
+  $dbh->do('DELETE FROM anchor WHERE url=?', undef, $url);
   {
     my $info = $dbh->read_page ($url);
-    diag explain $info;
-    is_deeply ($info, {});
+    diag "after delete: ", explain $info;
+    is_deeply ($info, {}, "read_page() nothing for url");
   }
   {
     my $info = $dbh->read_page ($url, $anchor);
-    diag explain $info;
+    diag "after read_page: ", explain $info;
     is_deeply ($info, { anchor_not_found => 1,
-                        have_anchors => []});
+                        have_anchors => []},
+               "read_page() with anchor, nothing for url");
   }
 
   $dbh->write_page ({ url => $url,

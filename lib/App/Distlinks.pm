@@ -1,4 +1,4 @@
-# Copyright 2009, 2010 Kevin Ryde
+# Copyright 2009, 2010, 2011 Kevin Ryde
 
 # This file is part of Distlinks.
 #
@@ -29,7 +29,7 @@ use App::Distlinks;
 # uncomment this to run the ### lines
 #use Smart::Comments;
 
-our $VERSION = 4;
+our $VERSION = 5;
 
 my %exclude_hosts
   = (
@@ -83,13 +83,18 @@ sub check_dir_or_file {
       if ($self->{'verbose'}) { print __x("skip {url}\n", url => $uri); }
       return;
     }
-    if ($self->{'verbose'}) { print __x("file {filename} match {url}\n",
-                                        filename => $found->filename,
-                                        url => $uri); }
+    if ($self->{'verbose'}) {
+      print __x("file {filename} match {url}\n",
+                filename => $found->filename,
+                url => $found->url_raw);
+      if ($found->url_raw ne $uri) {
+        print __x("  is {url}\n", url => $uri);
+      }
+    }
 
     my ($line, $col) = $found->line_and_column;
     my $filename = $found->filename;
-    check_uri ($self, $uri, $found->url_raw, "$filename:$line:$col");
+    $self->check_uri ($uri, $found->url_raw, "$filename:$line:$col");
   }
 }
 
@@ -165,31 +170,37 @@ sub check_uri {
     if ($self->{'verbose'} >= 2) {
       print $resp->headers->as_string;
       print "received content length: ", length($mech->content), "\n";
-      print "code ", $resp->code;
-      print "line ", $resp->status_line, "<END STATUS LINE>\n";
+      print "code ", $resp->code, "\n";
+      print "line ``", $resp->status_line, "''\n";
     }
 
-    $info = { url            => $uri,
-              is_success     => ($resp->is_success ? 1 : 0),
-              status_code    => $resp->code,
-              status_line    => $resp->status_line,
-              etag           => scalar $resp->header('ETag'),
-              last_modified  => scalar $resp->header('Last-Modified'),
-              redir_location => scalar $resp->header('Location')
-            };
-    if ($resp->request->method eq 'GET'
-        && $resp->is_success) {
-      $info->{'anchors'} = [ html_anchors($mech->content) ];
-    }
+    if ($resp->code == 304) {
+      if ($self->{'verbose'}) {
+        print __x("  not modified\n");
+      }
+    } else {
+      $info = { url            => $uri,
+                is_success     => ($resp->is_success ? 1 : 0),
+                status_code    => $resp->code,
+                status_line    => $resp->status_line,
+                etag           => scalar $resp->header('ETag'),
+                last_modified  => scalar $resp->header('Last-Modified'),
+                redir_location => scalar $resp->header('Location')
+              };
+      if ($resp->request->method eq 'GET'
+          && $resp->is_success) {
+        $info->{'anchors'} = [ html_anchors($mech->content) ];
+      }
 
-    if ($info->{'status_code'} == 500
-        && $info->{'status_line'} =~ /File successfully transferred/) {
-      if ($self->{'verbose'} >= 2) { print __("hack ftp 500 successful to 200\n"); }
-      $info->{'status_code'} = 200;
-      $info->{'is_success'} = 1;
-    }
+      if ($info->{'status_code'} == 500
+          && $info->{'status_line'} =~ /File successfully transferred/) {
+        if ($self->{'verbose'} >= 2) { print __("hack ftp 500 successful to 200\n"); }
+        $info->{'status_code'} = 200;
+        $info->{'is_success'} = 1;
+      }
 
-    $dbh->write_page ($info);
+      $dbh->write_page ($info);
+    }
   }
   if ($self->{'verbose'} >= 2) {
     print __x("code:     {code}\n", code => $info->{'status_code'});
@@ -204,8 +215,8 @@ sub check_uri {
       && $info->{'status_code'} == 500) {
 
   } elsif ($info->{'status_code'} == 301  # Moved Permanently
-      && (sans_trailing_slash($uri)
-          eq sans_trailing_slash($info->{'redir_location'}||''))) {
+           && (sans_trailing_slash($uri)
+               eq sans_trailing_slash($info->{'redir_location'}||''))) {
     # suppress redir only for different trailing slash
     # FIXME: anchor check on redir?
 
@@ -354,15 +365,20 @@ sub command_line {
               count_ok => $count_ok,
               count_bad => $count_bad);
   }
-  # vacuum after any checks
+
+  # expire after any checks
+  if ($option_vacuum || App::Distlinks::DBI->can('instance')) {
+    require App::Distlinks::DBI;
+    App::Distlinks::DBI->instance->expire ($option_vacuum);
+  }
   if ($option_vacuum) {
-    App::Distlinks::DBI->instance->expire;
+    require App::Distlinks::DBI;
     App::Distlinks::DBI->instance->vacuum;
     $show_usage = 0;
   }
 
   if ($show_usage) {
-    print __x("Usage: '{progname} DIR-OR-FILE...'\n",
+    print __x("Usage: {progname} FILES-OR-DIRECTORIES...\n",
               progname => $self->progname);
     return 1;
   }

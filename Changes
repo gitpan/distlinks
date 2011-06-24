@@ -1,4 +1,4 @@
-Copyright 2010 Kevin Ryde
+Copyright 2010, 2011 Kevin Ryde
 
 This file is part of Distlinks.
 
@@ -16,6 +16,11 @@ You should have received a copy of the GNU General Public License along
 with Distlinks.  If not, see <http://www.gnu.org/licenses/>.
 
 
+
+Version 5, June 2011
+    - expire old links automatically
+    - always recheck file:///...
+    - expand relative links in local files from the command line
 
 Version 4, October 2010
     - untar readonly to prevent accidental editing

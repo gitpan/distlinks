@@ -1,4 +1,4 @@
-# Copyright 2010 Kevin Ryde
+# Copyright 2010, 2011 Kevin Ryde
 
 # This file is part of Distlinks.
 #
@@ -15,14 +15,14 @@
 # You should have received a copy of the GNU General Public License along
 # with Distlinks.  If not, see <http://www.gnu.org/licenses/>.
 
-package App::Distlinks::FileFind;
+package App::Distlinks::DBIarray;
 use 5.010;
 use strict;
 use warnings;
 use DBI;
 use base 'Tie::Array';
 
-our $VERSION = 4;
+our $VERSION = 5;
 
 sub TIEARRAY {
   my ($class, $dbh, $table) = @_;
