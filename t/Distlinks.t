@@ -1,6 +1,6 @@
 #!/usr/bin/perl -w
 
-# Copyright 2009, 2010, 2011 Kevin Ryde
+# Copyright 2009, 2010, 2011, 2012 Kevin Ryde
 
 # This file is part of Distlinks.
 #
@@ -27,7 +27,7 @@ BEGIN { MyTestHelpers::nowarnings() }
 
 require App::Distlinks;
 {
-  my $want_version = 5;
+  my $want_version = 6;
   is ($App::Distlinks::VERSION, $want_version, 'VERSION variable');
   is (App::Distlinks->VERSION,  $want_version, 'VERSION class method');
 

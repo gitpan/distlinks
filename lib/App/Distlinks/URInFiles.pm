@@ -1,4 +1,4 @@
-# Copyright 2010, 2011 Kevin Ryde
+# Copyright 2010, 2011, 2012 Kevin Ryde
 
 # This file is part of Distlinks.
 #
@@ -26,9 +26,9 @@ use Perl6::Slurp;
 use Locale::TextDomain ('App-Distlinks');
 
 # uncomment this to run the ### lines
-#use Devel::Comments;
+#use Smart::Comments;
 
-our $VERSION = 5;
+our $VERSION = 6;
 
 # my %exclude_dirs = (# 'b'    => 1,
 #                     'blib' => 1,
@@ -83,6 +83,8 @@ sub _is_not_excluded {
 
 sub next {
   my ($self) = @_;
+  ### URInFiles next() ...
+
   for (;;) {
     if (my $urit = $self->{'urit'}) {
       if (defined (my $ufound = $urit->next)) {
@@ -99,8 +101,12 @@ sub next {
       }
     };
     ### URInFiles filename: $filename
+
     my $content = $self->file_text ($filename)
-      // next;
+      // do {
+        ### no content for: $filename
+        next;
+      };
 
     require App::Distlinks::URIterator;
     $self->{'urit'} = App::Distlinks::URIterator->new
@@ -139,7 +145,12 @@ sub file_text {
   my ($self, $filename) = @_;
   ### URInFiles file_text(): $filename
 
-  my $content = Perl6::Slurp::slurp ($filename);
+  my $content = eval { Perl6::Slurp::slurp($filename) }
+    // do {
+      print $@;
+      return undef;
+    };
+  ### $content
 
   for (;;) {
     foreach my $bom (keys %bom_coding) {
@@ -219,8 +230,8 @@ sub untar {
   my $tempdir = File::Temp->newdir ('distlinks-XXXXXX',
                                     TMPDIR => 1,
                                     CLEANUP => 0);
-  if ($self->{'verbose'}) { print STDERR __x("untar to dir: {dir}\n",
-                                             dir => $tempdir); }
+  if ($self->{'verbose'}) { print __x("untar to dir: {dir}\n",
+                                      dir => $tempdir); }
 
   require Archive::Tar;
   require IO::String;
@@ -241,8 +252,8 @@ sub unzip {
   my $tempdir = File::Temp->newdir ('distlinks-XXXXXX',
                                     TMPDIR => 1,
                                     CLEANUP => 0);
-  if ($self->{'verbose'}) { print STDERR __x("unzip to dir: {dir}\n",
-                                             dir => $tempdir); }
+  if ($self->{'verbose'}) { print __x("unzip to dir: {dir}\n",
+                                      dir => $tempdir); }
 
   require Archive::Zip;
   require IO::String;

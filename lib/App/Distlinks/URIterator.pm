@@ -1,4 +1,4 @@
-# Copyright 2009, 2010, 2011 Kevin Ryde
+# Copyright 2009, 2010, 2011, 2012 Kevin Ryde
 
 # This file is part of Distlinks.
 #
@@ -22,7 +22,7 @@ use warnings;
 # uncomment this to run the ### lines
 #use Devel::Comments;
 
-our $VERSION = 5;
+our $VERSION = 6;
 
 # filename => 
 # content  =>
@@ -76,7 +76,7 @@ sub next {
     ### match: substr($self->{'content'},$-[0],$+[0]-$-[0])
 
     if ($+{'texinfo'}) {
-      $url =~ s/\@comma{}/,/g;  # my @comma macro
+      $url =~ s/\@comma\{\}/,/g;  # my @comma macro
     } elsif ($+{'href'}) {
       $base = $self->{'base'};
     } else {

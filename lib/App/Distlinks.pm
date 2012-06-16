@@ -1,4 +1,4 @@
-# Copyright 2009, 2010, 2011 Kevin Ryde
+# Copyright 2009, 2010, 2011, 2012 Kevin Ryde
 
 # This file is part of Distlinks.
 #
@@ -29,7 +29,7 @@ use App::Distlinks;
 # uncomment this to run the ### lines
 #use Smart::Comments;
 
-our $VERSION = 5;
+our $VERSION = 6;
 
 my %exclude_hosts
   = (
@@ -71,12 +71,14 @@ sub dbh {
 
 sub check_dir_or_file {
   my ($self, $dir_or_filename) = @_;
+  ### Distlinks check_dir_or_file(): $dir_or_filename
 
   require App::Distlinks::URInFiles;
   my $it = App::Distlinks::URInFiles->new ($dir_or_filename);
   $it->{'verbose'} = $self->{'verbose'};
   while (defined (my $found = $it->next)) {
     my $uri = $found->uri;
+    ### $uri
 
     if ($exclude_urls{$uri}
         || ($uri->can('host') && exclude_host($uri->host))) {
@@ -96,6 +98,8 @@ sub check_dir_or_file {
     my $filename = $found->filename;
     $self->check_uri ($uri, $found->url_raw, "$filename:$line:$col");
   }
+
+  ### Distlinks check_dir_or_file() finished ...
 }
 
 
@@ -326,9 +330,11 @@ sub set_verbose {
 }
 
 sub command_line {
-  my ($class) = @_;
-
-  my $self = $class->new;
+  my ($self) = @_;
+  ### command_line(): @_
+  if (! ref $self) {
+    $self = $self->new;
+  }
 
   my $option_vacuum = 0;
   my $show_usage = 1;
@@ -339,7 +345,10 @@ sub command_line {
                            'bundling');
   Getopt::Long::GetOptions
       (# 'help|?'  => $help,
-       'verbose|V' => sub { $self->set_verbose (++$self->{'verbose'}) },
+       'verbose=s' => sub {
+         my ($opt,$value) = @_;
+         $self->set_verbose ("$value");
+       },
        version     => sub {
          print __x("{progname} version {VERSION}\n",
                    progname => $self->progname,

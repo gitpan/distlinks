@@ -13,6 +13,7 @@ devel/foo.html
 devel/head.pl
 devel/PodLinkCheck.pm
 devel/regexp.pl
+devel/symlink.pl
 devel/unused.pl
 devel/url.pl
 distlinks
@@ -43,4 +44,12 @@ xt/0-Test-DistManifest.t
 xt/0-Test-Pod.t
 xt/0-Test-Synopsis.t
 xt/0-Test-YAML-Meta.t
+xtools/my-check-copyright-years.sh
+xtools/my-check-file-part-of.sh
+xtools/my-check-spelling.sh
+xtools/my-deb.sh
+xtools/my-diff-prev.sh
+xtools/my-manifest.sh
+xtools/my-pc.sh
+xtools/my-wunused.sh
 META.yml                                 Module meta-data (added by MakeMaker)

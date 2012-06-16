@@ -1,4 +1,4 @@
-# Copyright 2010, 2011 Kevin Ryde
+# Copyright 2010, 2011, 2012 Kevin Ryde
 
 # This file is part of Distlinks.
 #
@@ -22,7 +22,7 @@ use warnings;
 use File::Spec;
 use Iterator::Simple;
 
-our $VERSION = 5;
+our $VERSION = 6;
 
 use constant _false => 0;
 
