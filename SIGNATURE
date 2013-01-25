@@ -14,42 +14,45 @@ not run its Makefile.PL or Build.PL.
 -----BEGIN PGP SIGNED MESSAGE-----
 Hash: SHA1
 
-SHA1 d16ef206c3f8be744841121a52ad4877144a3521 Changes
-SHA1 390791846bf5c3e06e1274d2fbaa88bd4492ad44 MANIFEST
-SHA1 6e3dfa4a933a1a5da6c934cca324fc40495b2f5d MANIFEST.SKIP
-SHA1 7aa046505f5b026e19f67d3c3bc99efd82c58468 META.yml
-SHA1 cdaaffb30803265c8d0af0880b0a9642322ce033 Makefile.PL
-SHA1 e8dd636a4a818b0834b3db2e02c851f1335ff804 debian/changelog
+SHA1 c7847775846c95a99830c4059b9bb4b2386fd47e Changes
+SHA1 c03a82ce1658c9a46e11622f3c3fd57b6feb39ff MANIFEST
+SHA1 b758f740af57256154bbf4e1f8a760a1b9f9dfe1 MANIFEST.SKIP
+SHA1 8c424a84ed01178884dd73c277a48d269361b3c9 META.yml
+SHA1 5ad56934187f6106297220b9e0bfaf310d7957d9 Makefile.PL
+SHA1 e25fc3236143e850b9866734f1954c642a65af54 debian/changelog
 SHA1 ac3478d69a3c81fa62e60f5c3696165a4e5e6ac4 debian/compat
 SHA1 2aa0f703fda7effa766674a9b2b3cc95c84cabfb debian/control
 SHA1 5b909782675fd64546fbf1dffe010ebdf611bfd0 debian/copyright
 SHA1 96e0dd22583aaefd7d06bfa1670bbedfa2cc06d3 debian/rules
 SHA1 61652cd1568dcf2614df833eba241755eee34e89 debian/source/format
 SHA1 eabecb5e038074036950b8b2255913086c76d177 debian/watch
-SHA1 051affc90a7e93c6411f76ceccf9f0d1ad31c40e devel/DBIarray.pm
-SHA1 e0325a72e7ef8b65c44448a9fbacf0fcf7f5015e devel/PodLinkCheck.pm
+SHA1 ca4c5352a92af43f64f33b23423ab452979d0850 devel/DBIarray.pm
+SHA1 bcb175166dab3afddad314a0a5660b806f477e11 devel/PodLinkCheck.pm
 SHA1 db27b62365e977a1990644ce1094aac616212e86 devel/circdir.pl
 SHA1 da480e90c2e19902187f6a5db39185fcf85ee595 devel/filetype.pl
 SHA1 3cec40adfc8795a492eaccd3b04605eeddd64bb8 devel/foo.html
+SHA1 1a6bc14a39ac6b88f62587bf48618c2e44a63fa8 devel/grep-usr-doc-html.pl
 SHA1 9bcd82f32f7c97e70f4853bc51b01c42bdff00aa devel/head.pl
 SHA1 a3a24eceea11d3d28c94ee4726cb27709e01268a devel/regexp.pl
+SHA1 b8003929b060018586c83c3815c34b96bd0ce16a devel/rsync.pl
+SHA1 f65225d2c9737ad5ac9a0d36a8e3c2b7825eaea9 devel/rsyncd.conf
 SHA1 63eab8375278b3473c66ce8d1525ad02fb620c66 devel/symlink.pl
 SHA1 4df4941cffa04c812ba5031eaaeb9b843f81f912 devel/unused.pl
 SHA1 8925d807307b4415bd2bc1e45e99e831e5bf0086 devel/url.pl
-SHA1 fd06cd5f9c154f484b81c5ba1d778ea7757210cf distlinks
-SHA1 355b182e01f918114bc6c85967b2de758e1dc9fe inc/MyMakeMakerExtras.pm
+SHA1 8a300371f70e00958a23fd58cabfd69c8011ffb2 distlinks
 SHA1 7a988b2aa7ed09f1cb9029a1ef3f0e2139dca0cf inc/my_pod2html
 SHA1 3daa517d12c196fee368ef5a7d4d12a53eb9803d junk/URIFind.pm
-SHA1 885ec7cb43399ce0ab07aad4c8e01e95bad18fba lib/App/Distlinks.pm
-SHA1 0526ffb659d763e44f41acb848e77bcf943e3edb lib/App/Distlinks/DBI.pm
-SHA1 0da6373982fd91ce92181dd35d0e91b2c05f2d4a lib/App/Distlinks/FileFind.pm
-SHA1 24e9d16c39ccb10a2b822d3f82ae185f299c16d7 lib/App/Distlinks/URInFiles.pm
-SHA1 e27726c2359321473bcaf88bd44371f51b41902e lib/App/Distlinks/URIterator.pm
-SHA1 3c6808b14a62ba3f70c7e0a341041f7185fad134 t/DBI.t
-SHA1 424b578c20d500d3990ed921897b477684a03f85 t/Distlinks.t
+SHA1 e8573d117f945493cf7655338fa51dd1622d3e44 lib/App/Distlinks.pm
+SHA1 dae5efaf1301d0c8407419422d556b59fdd0e509 lib/App/Distlinks/DBI.pm
+SHA1 eeab85d6e4c499deedcd30207890121b51b136a2 lib/App/Distlinks/FileFind.pm
+SHA1 ec0a4b1d9f2a8af9cf8abd6c69bc1b1bfb14fee5 lib/App/Distlinks/LWP/Protocol/rsync.pm
+SHA1 53b88a3f07a4144620fe87447d142faed5eee72f lib/App/Distlinks/URInFiles.pm
+SHA1 daba389fd9bb7e34715ebf70b57063c6cfc43804 lib/App/Distlinks/URIterator.pm
+SHA1 4b95d858ef08dcb8047a233790ab25a3fca9c3b2 t/DBI.t
+SHA1 55deb2d3e117027c2b3ce75b048f1fcb8e9019ac t/Distlinks.t
 SHA1 3855de075da37f5bc4e6a5534b2f00cc14872a98 t/MyTestHelpers.pm
-SHA1 6e740f6d66b9aac898fa46005137836cc76208fb t/URInFiles.t
-SHA1 5100e6b3a5eb7a0362bbd558a357db9c56f9a8b4 t/URIterator.t
+SHA1 a600c1d3f00b72032dc148d266d4ca5a921545ec t/URInFiles.t
+SHA1 be041f968b5469dda49591c24384ddc8c667e7ef t/URIterator.t
 SHA1 161c33312e766bba95ef189a88aa707b14bc4ece t/bom-utf16le.txt
 SHA1 811028548aa4b360b5086d1af3150f9dde348aa6 xt/0-META-read.t
 SHA1 c9e7a47e1f397eb5f46d7e4ef21754d9df76e36e xt/0-Test-ConsistentVersion.t
@@ -59,19 +62,19 @@ SHA1 083242d959c1a9242c874982e4585872a95bec93 xt/0-Test-Synopsis.t
 SHA1 ec454b1b524d2d0b35e5a7d8292ad13d82becab5 xt/0-Test-YAML-Meta.t
 SHA1 42c04ae557ab86d3488c647ea17bd37cd2bd7d6a xt/0-exe-shebang.t
 SHA1 2fb2ce60ce5c740d1eb7e3b55a96f3ccb84d38c3 xt/0-file-is-part-of.t
-SHA1 daba2840c7f128371d42516619a0e04fee2f5ff4 xt/0-no-debug-left-on.t
+SHA1 aeb6f41dfae96d04459448f6c3e3dee44691e722 xt/0-no-debug-left-on.t
 SHA1 84a47c1d71fd58797a2754030998dfb673b62811 xtools/my-check-copyright-years.sh
 SHA1 bfb75ffb7a834c345288e01f561b12695f191d12 xtools/my-check-file-part-of.sh
-SHA1 aeade3655ca27d0860b1c33e94ae4159823ddbb5 xtools/my-check-spelling.sh
-SHA1 fad81dac3edf7be728f70b50d772571ff31f1bdb xtools/my-deb.sh
-SHA1 c6a29febf601937262018cfb14fbbe7e0a3b0d7a xtools/my-diff-prev.sh
+SHA1 1f28ea8151b0f8554e5ab4e5bbcf1c5371f788eb xtools/my-check-spelling.sh
+SHA1 f3e50b961e575e060e35ddc4d94c7b3e6101d660 xtools/my-deb.sh
+SHA1 2db0a23176de55a8ee8f1643f239aeaa2bcf4fa1 xtools/my-diff-prev.sh
 SHA1 e4a15f9b4bcf1d087de2d9ed8e87bf92b0469a6c xtools/my-manifest.sh
 SHA1 4db9c30b1fc96b04a794218ca19561b368f59679 xtools/my-pc.sh
-SHA1 631dabf52c65a7b8613d6565fef2c2416ebba7e9 xtools/my-wunused.sh
+SHA1 f90084e1d6f95abb12eea896cd1cc850402d7726 xtools/my-wunused.sh
 -----BEGIN PGP SIGNATURE-----
-Version: GnuPG v1.4.11 (GNU/Linux)
+Version: GnuPG v1.4.12 (GNU/Linux)
 
-iD8DBQFP2+LKLFMCIV9q3ToRAlnWAKCmN1xidOlrISkyUjZeLc9X8t9p7QCgmKTe
-pkEFiInXtd27TPO57b2SaVg=
-=Dhr7
+iD8DBQFRAwM1LFMCIV9q3ToRAu3jAJ9Cv2b7NfZ6lffWTHhnHN7Ti4KTqACfbSH5
+SUf5FjFp4V8QIQB8Frv7i0c=
+=03bb
 -----END PGP SIGNATURE-----

@@ -1,4 +1,4 @@
-# Copyright 2009, 2010, 2011, 2012 Kevin Ryde
+# Copyright 2009, 2010, 2011, 2012, 2013 Kevin Ryde
 
 # This file is part of Distlinks.
 #
@@ -29,7 +29,8 @@ use App::Distlinks;
 # uncomment this to run the ### lines
 #use Smart::Comments;
 
-our $VERSION = 6;
+
+our $VERSION = 7;
 
 my %exclude_hosts
   = (
@@ -79,6 +80,16 @@ sub check_dir_or_file {
   while (defined (my $found = $it->next)) {
     my $uri = $found->uri;
     ### $uri
+    ### scheme: $uri->scheme
+
+    # secret undocumented feature ...
+    if ($self->{'only_local'}) {
+      unless ($uri->scheme eq 'file') {
+        if ($self->{'verbose'}) { print __x("not local {url}\n",
+                                            url => $uri); }
+        next;
+      }
+    }
 
     if ($exclude_urls{$uri}
         || ($uri->can('host') && exclude_host($uri->host))) {
@@ -116,6 +127,13 @@ sub mech {
     require Net::Config;
     if (! @{$Net::Config::NetConfig{'nntp_hosts'}}) {
       $Net::Config::NetConfig{'nntp_hosts'} = [ 'localhost' ];
+    }
+
+    require Module::Util;
+    unless (Module::Util::find_installed('LWP::Protocol::rsync')) {
+      require App::Distlinks::LWP::Protocol::rsync;
+      LWP::Protocol::implementor('rsync',
+                                 'App::Distlinks::LWP::Protocol::rsync');
     }
 
     require WWW::Mechanize;
@@ -183,6 +201,26 @@ sub check_uri {
         print __x("  not modified\n");
       }
     } else {
+      if ($resp->code == 200) {
+        if (defined (my $redir_uri = response_meta_refresh($resp))) {
+          $uri = $redir_uri;
+          if (! defined $anchor) {
+            if ($self->{'verbose'} >= 2) { print "meta-refresh HEAD $uri\n"; }
+            $mech->head ($uri);
+          } else {
+            if ($self->{'verbose'} >= 2) { print "meta-refresh GET $uri\n"; }
+            $mech->get ($uri);
+          }
+          $resp = $mech->response;
+          if ($self->{'verbose'} >= 2) {
+            print $resp->headers->as_string;
+            print "received content length: ", length($mech->content), "\n";
+            print "code ", $resp->code, "\n";
+            print "line ``", $resp->status_line, "''\n";
+          }
+        }
+      }
+
       $info = { url            => $uri,
                 is_success     => ($resp->is_success ? 1 : 0),
                 status_code    => $resp->code,
@@ -231,8 +269,15 @@ sub check_uri {
     }
 
   } elsif ($info->{'anchor_not_found'}) {
-    $err = "no such anchor \"$anchor\"\n"
-      . "  have: " . join(',', @{$info->{'have_anchors'}}) . "\n";
+    my $have_anchors = join(',', @{$info->{'have_anchors'}});
+    if (length($have_anchors) == 0) {
+      $have_anchors = __('[none]');
+    } elsif (length($have_anchors) > 256) {
+      $have_anchors = __('[too many to list]');
+    }
+    $err = __x("no such anchor {anchor}\n  have: {have_anchors}\n",
+               anchor => $anchor,
+               have_anchors => $have_anchors);
   }
 
   if (defined $err && $printed{$url_raw}++ < 5) {
@@ -288,6 +333,24 @@ sub sans_trailing_slash {
   return $str;
 }
 
+# $resp is a HTML::Response
+# if it's a meta-refresh then return a URI object of the redirect target,
+# if not then return undef
+sub response_meta_refresh {
+  my ($resp) = @_;
+  ### response_meta_refresh() ...
+
+  my $content = $resp->decoded_content;
+  ### $content
+  if (defined $content
+      && $content =~ /^<meta\s+http-equiv="refresh"\s+content=["']\d+;\s+url=([^'"]*)/i) {
+    return $1;
+  } else {
+    return undef;
+  }
+}
+
+
 #------------------------------------------------------------------------------
 
 sub recheck {
@@ -311,9 +374,10 @@ sub recheck_404 {
 #------------------------------------------------------------------------------
 
 sub new {
-  my ($class) = @_;
+  my $class = shift;
   return bless { retry_500 => 1,
-                 verbose => 0 }, $class;
+                 verbose => 0,
+                 @_ }, $class;
 }
 
 sub progname {
@@ -345,7 +409,7 @@ sub command_line {
                            'bundling');
   Getopt::Long::GetOptions
       (# 'help|?'  => $help,
-       'verbose=s' => sub {
+       'verbose:1' => sub {
          my ($opt,$value) = @_;
          $self->set_verbose ("$value");
        },

@@ -22,7 +22,7 @@ use warnings;
 # uncomment this to run the ### lines
 #use Devel::Comments;
 
-our $VERSION = 6;
+our $VERSION = 7;
 
 # filename => 
 # content  =>
@@ -42,7 +42,8 @@ my %open_paren = ('}' => '{',
                   '>' => '<');
 my $scheme         = qr{(https?|s?ftp|news):/+[[:alnum:]]};
 my %barehost_table = (www => 'http://',
-                      ftp => 'ftp://');
+                      ftp => 'ftp://',
+                      rsync => 'rsync://');
 my $barehost_re    = join('|', keys %barehost_table);
 my $scheme_or_host = qr/\b($scheme|(?<barehost>$barehost_re)\d*\.)/o;
 my $urlchar_not    = '\\\\<>"\'! [:cntrl:]';

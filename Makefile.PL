@@ -1,6 +1,6 @@
 #!/usr/bin/perl -w
 
-# Copyright 2009, 2010, 2011, 2012 Kevin Ryde
+# Copyright 2009, 2010, 2011, 2012, 2013 Kevin Ryde
 
 # This file is part of Distlinks.
 #
@@ -22,10 +22,7 @@ use strict;
 use warnings;
 use ExtUtils::MakeMaker;
 
-use lib 'inc';
-use MyMakeMakerExtras;
-
-MyMakeMakerExtras::WriteMakefile
+WriteMakefile
   (NAME         => 'distlinks',
    ABSTRACT     => 'URL link checking with database.',
    VERSION_FROM => 'distlinks',
@@ -54,12 +51,16 @@ MyMakeMakerExtras::WriteMakefile
                     'Iterator::Simple' => 0,
                     'List::MoreUtils' => '0.24', # 0.24 for stack growing, maybe
                     'Locale::TextDomain' => 0,
+                    'Module::Util' => 0,
                     'Perl6::Slurp' => 0,
 
                     # LWP 5.818 for dump(), and 5.819 for bug fixes
                     'LWP'        => 5.819,
                     'LWP::Debug' => 0,
                     'URI'        => 0,
+                    'HTTP::Response' => 0,
+                    'HTTP::Status' => 0,
+                    'HTTP::Date' => 0,
 
                     'Regexp::Common' => 0,
                     'Regexp::Common::URI::RFC2396' => 0,
@@ -77,24 +78,6 @@ MyMakeMakerExtras::WriteMakefile
      { homepage => 'http://user42.tuxfamily.org/distlinks/index.html',
        license  => 'http://www.gnu.org/licenses/gpl.html',
      },
-     no_index => { directory=>['devel'] },
-
-     optional_features =>
-     {
-      # maximum_tests =>
-      #        { description => 'Have "make test" do as much as possible.',
-      #          requires => {
-      #                      },
-      #        },
-     },
+     no_index => { directory=>['devel','xt'] },
    },
   );
-
-      # maximum_devel =>
-      # { description => 'Stuff used variously for development.',
-      #   requires => { 'File::MMagic'   => 0,
-      #                 'Devel::FindRef' => 0,
-      #                 'Devel::Peek'    => 0,
-      #                 'LWP::UserAgent' => 0,
-      #               },
-      # },

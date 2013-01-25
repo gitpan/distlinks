@@ -28,7 +28,7 @@ use Locale::TextDomain ('App-Distlinks');
 # uncomment this to run the ### lines
 #use Smart::Comments;
 
-our $VERSION = 6;
+our $VERSION = 7;
 
 # my %exclude_dirs = (# 'b'    => 1,
 #                     'blib' => 1,

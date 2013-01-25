@@ -1,6 +1,6 @@
 #!/usr/bin/perl -w
 
-# Copyright 2009, 2010, 2011, 2012 Kevin Ryde
+# Copyright 2012 Kevin Ryde
 
 # This file is part of Distlinks.
 #
@@ -18,25 +18,20 @@
 # with Distlinks.  If not, see <http://www.gnu.org/licenses/>.
 
 use strict;
-use warnings;
-use Test::More tests => 4;
+use App::Distlinks;
+use File::Locate::Iterator;
 
-use lib 't';
-use MyTestHelpers;
-BEGIN { MyTestHelpers::nowarnings() }
+my $distlinks = App::Distlinks->new
+  (verbose => 0,
+   only_local => 1);
+my $fli = File::Locate::Iterator->new
+  (regexp => qr{^/usr/share/doc/.*\.html?$});
 
-require App::Distlinks;
-{
-  my $want_version = 7;
-  is ($App::Distlinks::VERSION, $want_version, 'VERSION variable');
-  is (App::Distlinks->VERSION,  $want_version, 'VERSION class method');
+   # (regexp => qr{^/usr/share/doc/aspell-doc/aspell-dev.html/Filter-Interface.html$});
 
-  ok (eval { App::Distlinks->VERSION($want_version); 1 },
-      "VERSION class check $want_version");
-  my $check_version = $want_version + 1000;
-  ok (! eval { App::Distlinks->VERSION($check_version); 1 },
-      "VERSION class check $check_version");
-}
-
-exit 0;
-
+   while (my $filename = $fli->next) {
+     next unless -e $filename;
+     next if -d $filename;
+     $distlinks->check_dir_or_file($filename);
+   }
+   exit 0;

@@ -1,6 +1,6 @@
 #!/usr/bin/perl -w
 
-# Copyright 2009, 2010, 2011, 2012 Kevin Ryde
+# Copyright 2012 Kevin Ryde
 
 # This file is part of Distlinks.
 #
@@ -17,26 +17,30 @@
 # You should have received a copy of the GNU General Public License along
 # with Distlinks.  If not, see <http://www.gnu.org/licenses/>.
 
+
+# rsync --verbose --daemon --no-detach --config=rsyncd.conf
+
 use strict;
-use warnings;
-use Test::More tests => 4;
+use LWP::UserAgent;
+use lib 'devel/lib';
 
-use lib 't';
-use MyTestHelpers;
-BEGIN { MyTestHelpers::nowarnings() }
+require App::Distlinks::LWP::Protocol::rsync;
+LWP::Protocol::implementor('rsync', 'App::Distlinks::LWP::Protocol::rsync');
 
-require App::Distlinks;
 {
-  my $want_version = 7;
-  is ($App::Distlinks::VERSION, $want_version, 'VERSION variable');
-  is (App::Distlinks->VERSION,  $want_version, 'VERSION class method');
+  # my $url = 'rsync://download.tuxfamily.org/pub/user42/quick-yes.el';
+  my $url = 'rsync://localhost:9999/top/etc/ucf.conf';
 
-  ok (eval { App::Distlinks->VERSION($want_version); 1 },
-      "VERSION class check $want_version");
-  my $check_version = $want_version + 1000;
-  ok (! eval { App::Distlinks->VERSION($check_version); 1 },
-      "VERSION class check $check_version");
+  my $ua = LWP::UserAgent->new;
+  {
+    my $resp = $ua->head($url);
+    print "HEAD status_line: ",$resp->status_line,"<<<end\n";
+    print $resp->as_string;
+  }
+  {
+    my $resp = $ua->get($url);
+    print "GET status_line: ",$resp->status_line,"<<<end\n";
+    print $resp->as_string;
+  }
+  exit 0;
 }
-
-exit 0;
-

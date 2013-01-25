@@ -1,6 +1,6 @@
 --- #YAML:1.0
 name:               distlinks
-version:            6
+version:            7
 abstract:           URL link checking with database.
 author:
     - Kevin Ryde <user42@zip.com.au>
@@ -22,6 +22,9 @@ requires:
     File::Type:           0
     HTML::Entities:       0
     HTML::Parser:         0
+    HTTP::Date:           0
+    HTTP::Response:       0
+    HTTP::Status:         0
     Image::ExifTool:      0
     IO::String:           0
     Iterator::Simple:     0
@@ -29,6 +32,7 @@ requires:
     Locale::TextDomain:   0
     LWP:                  5.819
     LWP::Debug:           0
+    Module::Util:         0
     perl:                 5.010
     Perl6::Slurp:         0
     Regexp::Common:       0
@@ -48,10 +52,7 @@ no_index:
         - inc
         - devel
         - xt
-        - devel
-        - junk
 generated_by:       ExtUtils::MakeMaker version 6.57_05
 meta-spec:
     url:      http://module-build.sourceforge.net/META-spec-v1.4.html
     version:  1.4
-optional_features:  {}

@@ -1,6 +1,6 @@
 #!perl -w
 
-# Copyright 2009, 2010, 2011, 2012 Kevin Ryde
+# Copyright 2009, 2010, 2011, 2012, 2013 Kevin Ryde
 
 # This file is part of Distlinks.
 #
@@ -22,7 +22,7 @@ use strict;
 use warnings;
 use App::Distlinks;
 
-our $VERSION = 6;
+our $VERSION = 7;
 exit App::Distlinks->command_line();
 
 __END__
@@ -39,11 +39,11 @@ distlinks -- check URL links, with database cache
 
 Distlinks checks URLs found in files or a directory tree of files.  An
 SQLite database avoids rechecking links between multiple program runs.  It's
-a bit rough yet but is good for checking everything in a software
-distribution or similar.
+a bit rough but is good for checking everything in a software distribution
+or similar.
 
 Various file types are recognised and read appropriately to extract text
-parts.
+parts to find URLs.
 
 =over
 
@@ -61,7 +61,7 @@ F<.zip>
 
 =item *
 
-Text with UTF-16 or UTF-32 BOM.
+Text with UTF-16 or UTF-32 byte-order marker.
 
 =item *
 
@@ -69,11 +69,11 @@ Image files per C<Image::ExifTool>, so the text parts of PNG, JPEG, etc.
 
 =item *
 
-F<.mo> message catalogue.
+F<.mo> message catalogue per C<gettext>.
 
 =item *
 
-Skip executables ELF, MS-DOS, etc per C<File::Type>.
+Skip executables ELF, MS-DOS, etc as identified by C<File::Type>.
 
 =back
 
@@ -146,6 +146,13 @@ C<Net::NNTP>, which means an C<NNTPSERVER> or C<NEWSHOST> environment
 variable, or a C<Net::Config> setup.  For convenience C<distlinks> tries
 "localhost" if none of those are set.
 
+=item rsync
+
+Rsync URLs like C<rsync://hostname/module/path/foo.txt> are checked with
+C<LWP::Protocol::rsync> if you have such a module, or otherwise a builtin
+protocol module which runs the C<rsync> program and does enough for
+distlinks.
+
 =back
 
 =head1 ENVIRONMENT VARIABLES
@@ -184,8 +191,8 @@ C<Net::Config> configuration, for news server.
 =head1 BUGS
 
 A F<.tar> or similar archive is extracted into a directory under F</tmp> so
-that actual files can be reported on, but those temporary directories
-created are never removed.
+that actual files can be reported on, but those temporary directories are
+never deleted.
 
 =head1 SEE ALSO
 

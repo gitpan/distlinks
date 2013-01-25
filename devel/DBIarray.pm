@@ -22,7 +22,7 @@ use warnings;
 use DBI;
 use base 'Tie::Array';
 
-our $VERSION = 6;
+our $VERSION = 7;
 
 sub TIEARRAY {
   my ($class, $dbh, $table) = @_;
