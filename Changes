@@ -17,9 +17,13 @@ with Distlinks.  If not, see <http://www.gnu.org/licenses/>.
 
 
 
+Version 8, March 2013
+    - tests diagnostics for gmtime
+
 Version 7, January 2013
     - correction to --verbose, make the level optional as per the POD
     - follow html meta-refresh directives
+    - check rsync: urls too
 
 Version 6, June 2012
     - continue past dangling symlinks in a directory

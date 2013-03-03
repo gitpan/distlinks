@@ -20,7 +20,6 @@ devel/symlink.pl
 devel/unused.pl
 devel/url.pl
 distlinks
-inc/my_pod2html
 junk/URIFind.pm
 lib/App/Distlinks.pm
 lib/App/Distlinks/DBI.pm
@@ -55,4 +54,5 @@ xtools/my-diff-prev.sh
 xtools/my-manifest.sh
 xtools/my-pc.sh
 xtools/my-wunused.sh
+xtools/my_pod2html
 META.yml                                 Module meta-data (added by MakeMaker)

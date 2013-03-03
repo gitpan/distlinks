@@ -1,4 +1,4 @@
-# Copyright 2010, 2011, 2012 Kevin Ryde
+# Copyright 2010, 2011, 2012, 2013 Kevin Ryde
 
 # This file is part of Distlinks.
 #
@@ -28,7 +28,7 @@ use Locale::TextDomain ('App-Distlinks');
 # uncomment this to run the ### lines
 #use Smart::Comments;
 
-our $VERSION = 7;
+our $VERSION = 8;
 
 # my %exclude_dirs = (# 'b'    => 1,
 #                     'blib' => 1,

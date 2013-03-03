@@ -1,4 +1,4 @@
-# Copyright 2009, 2010, 2011, 2012 Kevin Ryde
+# Copyright 2009, 2010, 2011, 2012, 2013 Kevin Ryde
 
 # This file is part of Distlinks.
 #
@@ -22,7 +22,7 @@ use warnings;
 # uncomment this to run the ### lines
 #use Devel::Comments;
 
-our $VERSION = 7;
+our $VERSION = 8;
 
 # filename => 
 # content  =>

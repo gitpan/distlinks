@@ -22,7 +22,7 @@ use strict;
 use warnings;
 use App::Distlinks;
 
-our $VERSION = 7;
+our $VERSION = 8;
 exit App::Distlinks->command_line();
 
 __END__

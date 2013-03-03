@@ -1,6 +1,6 @@
 #!/usr/bin/perl -w
 
-# Copyright 2009, 2010, 2011, 2012 Kevin Ryde
+# Copyright 2009, 2010, 2011, 2012, 2013 Kevin Ryde
 
 # This file is part of Distlinks.
 #
@@ -28,7 +28,7 @@ BEGIN { MyTestHelpers::nowarnings() }
 require App::Distlinks::DBI;
 
 {
-  my $want_version = 7;
+  my $want_version = 8;
   is ($App::Distlinks::DBI::VERSION, $want_version, 'VERSION variable');
   is (App::Distlinks::DBI->VERSION,  $want_version, 'VERSION class method');
 
@@ -39,6 +39,16 @@ require App::Distlinks::DBI;
       "VERSION class check $check_version");
 }
 
+#------------------------------------------------------------------------------
+# diagonstics
+
+{
+  my $t = time();
+  diag "time() is $t";
+  my @gm = gmtime($t);
+  diag "gmtime() has ",scalar(@gm)," values";
+  diag "gmtime() is ", explain \@gm;
+}
 
 #------------------------------------------------------------------------------
 
@@ -75,19 +85,26 @@ require App::Distlinks::DBI;
   {
     my $info = $dbh->read_page ($url);
     # diag explain $info;
-    ok ($info->{'is_success'});
+    ok ($info->{'is_success'},
+        "read_page() after write");
   }
   {
     my $info = $dbh->read_page ($url, $anchor);
-    ok ($info->{'is_success'});
+    ok ($info->{'is_success'},
+        "read_page() and anchor");
   }
   {
     my $info = $dbh->read_page ($url, $not_anchor);
-    ok ($info->{'is_success'});
+    ok ($info->{'is_success'},
+        "read_page() nosuchanchor");
   }
 
+  diag "expire ...";
   $dbh->expire;
+  diag "vacuum ...";
   $dbh->vacuum;
+
+  diag "finished";
 }
 
 exit 0;
