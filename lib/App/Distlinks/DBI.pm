@@ -24,7 +24,7 @@ use List::MoreUtils;
 use base 'Class::Singleton';
 use base 'DBI';
 
-our $VERSION = 8;
+our $VERSION = 9;
 
 my $verbose = 0;
 
@@ -184,25 +184,25 @@ sub write_page {
      });
 }
 
-my $expire_days = 30000;
+my $expire_days = 30;
 
 sub expire {
   my ($dbh, $always_print) = @_;
   # always expire file:// urls so as to recheck on next run
   $dbh->do ('DELETE FROM page WHERE url LIKE \'file://%\'');
 
-  my $expired = $dbh->do
+  my $count = $dbh->do
     ('DELETE FROM page WHERE timestamp < ? OR timestamp > ?',
      undef,
      timestamp_range ($expire_days * 86400));
-  $expired += 0; # numize '0E0' return when none deleted
+  $count += 0; # numize '0E0' return when none deleted
 
-  if ($expired || $always_print) {
+  if ($count || $always_print) {
     my ($kept) = $dbh->selectrow_array('SELECT COUNT(*) FROM page');
     my ($anchors) = $dbh->selectrow_array('SELECT COUNT(*) FROM anchor');
-    print "expired $expired links, kept $kept (with $anchors anchors)\n";
+    print "expired $count links, kept $kept (with $anchors anchors)\n";
   }
-  return $expired;
+  return $count;
 }
 
 sub vacuum {
@@ -302,8 +302,9 @@ sub timestamp_now {
 }
 sub timet_to_timestamp {
   my ($t) = @_;
+  my @gmtime = gmtime($t) or die "Oops, gmtime($t) not supported";
   require POSIX;
-  return POSIX::strftime ('%Y-%m-%d %H:%M:%S+00:00', gmtime($t));
+  return POSIX::strftime ('%Y-%m-%d %H:%M:%S+00:00', @gmtime);
 }
 sub timestamp_to_timet {
   my ($timestamp) = @_;

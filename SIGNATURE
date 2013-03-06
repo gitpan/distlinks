@@ -14,20 +14,20 @@ not run its Makefile.PL or Build.PL.
 -----BEGIN PGP SIGNED MESSAGE-----
 Hash: SHA1
 
-SHA1 75fb65a9a48659992fb1fc3fe1f2c7a0cff9f1ed Changes
+SHA1 fc5900afd4bbf7c139d73933f4d780983e480bf1 Changes
 SHA1 c9f876a7f1ed73003eb30ebe722f8f053b80ce1c MANIFEST
 SHA1 b758f740af57256154bbf4e1f8a760a1b9f9dfe1 MANIFEST.SKIP
-SHA1 e363fa44ff379c440d0d170da607452e263ad7c2 META.yml
+SHA1 721e4b7840bbd83c0107a334dcfd63aa7dfcd5ba META.yml
 SHA1 5ad56934187f6106297220b9e0bfaf310d7957d9 Makefile.PL
-SHA1 af9f8dd323f7b76eb849247e566a52a3df6af1ff debian/changelog
+SHA1 6108537d2a8ef100a366e8d543b1dcb70c529205 debian/changelog
 SHA1 ac3478d69a3c81fa62e60f5c3696165a4e5e6ac4 debian/compat
 SHA1 2aa0f703fda7effa766674a9b2b3cc95c84cabfb debian/control
 SHA1 b2e1ec8aaef14910909b1e2e4137c6c0dc85f458 debian/copyright
 SHA1 96e0dd22583aaefd7d06bfa1670bbedfa2cc06d3 debian/rules
 SHA1 61652cd1568dcf2614df833eba241755eee34e89 debian/source/format
 SHA1 eabecb5e038074036950b8b2255913086c76d177 debian/watch
-SHA1 04e94e8e5db4ea41596eec93f1c0c99dbd9d8b64 devel/DBIarray.pm
-SHA1 b39ba4e39cc36e6c37a04fef6695793263991460 devel/PodLinkCheck.pm
+SHA1 b6a28d2434a6277234f715b2a3baa789ed4ac136 devel/DBIarray.pm
+SHA1 8613630cc70b5af034e6cfd4a7e63c6bf23c925e devel/PodLinkCheck.pm
 SHA1 db27b62365e977a1990644ce1094aac616212e86 devel/circdir.pl
 SHA1 da480e90c2e19902187f6a5db39185fcf85ee595 devel/filetype.pl
 SHA1 3cec40adfc8795a492eaccd3b04605eeddd64bb8 devel/foo.html
@@ -39,19 +39,19 @@ SHA1 f65225d2c9737ad5ac9a0d36a8e3c2b7825eaea9 devel/rsyncd.conf
 SHA1 63eab8375278b3473c66ce8d1525ad02fb620c66 devel/symlink.pl
 SHA1 4df4941cffa04c812ba5031eaaeb9b843f81f912 devel/unused.pl
 SHA1 8925d807307b4415bd2bc1e45e99e831e5bf0086 devel/url.pl
-SHA1 9f5d950f00c308336f34c4242b32d258f4048f24 distlinks
+SHA1 4bfca1b1c8e1b85da2e689c17d9856f343a68ae8 distlinks
 SHA1 3daa517d12c196fee368ef5a7d4d12a53eb9803d junk/URIFind.pm
-SHA1 ccef17f9f6a829a328cb6e72a1f315502881665c lib/App/Distlinks.pm
-SHA1 3bdd0bf7b06cac63c978a91d4eaaa08c80d89eda lib/App/Distlinks/DBI.pm
-SHA1 5751e96bebdd18d6f879aeb90e7968a3f23e8208 lib/App/Distlinks/FileFind.pm
-SHA1 5c8de51895401fd441504128a5ef104e02b93259 lib/App/Distlinks/LWP/Protocol/rsync.pm
-SHA1 63592acda377673e4be2372a89a9ca0985789e54 lib/App/Distlinks/URInFiles.pm
-SHA1 ff0af16dd3893d7ace40b8e6c5b2e0e3624041ff lib/App/Distlinks/URIterator.pm
-SHA1 d0326a687dbea425ce45093bdec2fc4897aafa3a t/DBI.t
-SHA1 91c7d7925c12f526b4223b8dc6c0aacbf2d40f33 t/Distlinks.t
+SHA1 0ba1f75f36cd5ad0fba009d41d418950096f69b1 lib/App/Distlinks.pm
+SHA1 7a7a7a99f5f2cdac3bf7478bc719d62c415eda4f lib/App/Distlinks/DBI.pm
+SHA1 16f6be54f084b7057d9a79f4338a7c4ff3796013 lib/App/Distlinks/FileFind.pm
+SHA1 d57631685e10924a603997311baf1a020316ee97 lib/App/Distlinks/LWP/Protocol/rsync.pm
+SHA1 f8eddf159627e3f9fecb7b9c2a2bb01bcfb23831 lib/App/Distlinks/URInFiles.pm
+SHA1 b65266b014e11010542dfb686f081b27da3d01b2 lib/App/Distlinks/URIterator.pm
+SHA1 c9660b1b97ea42a8f629ed93545c6de4a6717611 t/DBI.t
+SHA1 3469034105a97877f4552368a7d659c9b0c1a346 t/Distlinks.t
 SHA1 3855de075da37f5bc4e6a5534b2f00cc14872a98 t/MyTestHelpers.pm
-SHA1 3cc1207f3bb6a049ab16907cb2609be45ec9941e t/URInFiles.t
-SHA1 9e691fc1ddabdb8d57c89ebc55ccd0940785523e t/URIterator.t
+SHA1 847fc088841c485d3b21016f6d674ecb133c5b39 t/URInFiles.t
+SHA1 78b5eaae6341f2a4fa38c75ca948484bc898ae21 t/URIterator.t
 SHA1 161c33312e766bba95ef189a88aa707b14bc4ece t/bom-utf16le.txt
 SHA1 811028548aa4b360b5086d1af3150f9dde348aa6 xt/0-META-read.t
 SHA1 c9e7a47e1f397eb5f46d7e4ef21754d9df76e36e xt/0-Test-ConsistentVersion.t
@@ -74,7 +74,7 @@ SHA1 7a988b2aa7ed09f1cb9029a1ef3f0e2139dca0cf xtools/my_pod2html
 -----BEGIN PGP SIGNATURE-----
 Version: GnuPG v1.4.12 (GNU/Linux)
 
-iD8DBQFRM8G5LFMCIV9q3ToRAjLoAJ9JJNDDeVZ2bpgFhp74Wd9rp0xdvgCgpQlX
-weWVSG9GkFn4E+F5fwBpBf4=
-=GCca
+iD8DBQFRNny7LFMCIV9q3ToRAoNmAKC41xQhHIAbSEe6uz1hAYF/9SGV/QCfavSq
+lqRjsDEKkg/qCZOTBYKuyRs=
+=smwt
 -----END PGP SIGNATURE-----

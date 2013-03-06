@@ -29,7 +29,7 @@ use HTTP::Response;
 use HTTP::Status;
 
 use vars '$VERSION','@ISA';
-$VERSION = 8;
+$VERSION = 9;
 
 use LWP::Protocol;
 @ISA = qw(LWP::Protocol);

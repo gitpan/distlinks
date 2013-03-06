@@ -30,7 +30,7 @@ use App::Distlinks;
 #use Smart::Comments;
 
 
-our $VERSION = 8;
+our $VERSION = 9;
 
 my %exclude_hosts
   = (

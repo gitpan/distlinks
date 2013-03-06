@@ -28,7 +28,7 @@ BEGIN { MyTestHelpers::nowarnings() }
 require App::Distlinks::URInFiles;
 
 {
-  my $want_version = 8;
+  my $want_version = 9;
   is ($App::Distlinks::URInFiles::VERSION, $want_version, 'VERSION variable');
   is (App::Distlinks::URInFiles->VERSION,  $want_version, 'VERSION class method');
 
