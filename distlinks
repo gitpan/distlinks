@@ -22,7 +22,7 @@ use strict;
 use warnings;
 use App::Distlinks;
 
-our $VERSION = 9;
+our $VERSION = 10;
 exit App::Distlinks->command_line();
 
 __END__
@@ -38,8 +38,8 @@ distlinks -- check URL links, with database cache
 =head1 DESCRIPTION
 
 Distlinks checks URLs found in files or a directory tree of files.  An
-SQLite database avoids rechecking links between multiple program runs.  It's
-a bit rough but is good for checking everything in a software distribution
+SQLite-3 database avoids rechecking links between multiple program runs.
+It's a bit rough but good for checking everything in a software distribution
 or similar.
 
 Various file types are recognised and read appropriately to extract text
@@ -178,7 +178,7 @@ C<File::Spec>.
 
 =item F<~/.distlinks.sqdb>
 
-SQLite database of information kept about checked URLs.
+SQLite-3 database of information kept about checked URLs.
 
 =item F</etc/libnet.cfg>
 
@@ -198,7 +198,7 @@ never deleted.
 
 L<Net::Config>
 
-L<chklinks>
+L<chklinks>, L<linkchecker>, L<rsync(1)>
 
 =head1 HOME PAGE
 

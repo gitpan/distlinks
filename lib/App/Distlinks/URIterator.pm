@@ -22,7 +22,7 @@ use warnings;
 # uncomment this to run the ### lines
 #use Devel::Comments;
 
-our $VERSION = 9;
+our $VERSION = 10;
 
 # filename => 
 # content  =>
