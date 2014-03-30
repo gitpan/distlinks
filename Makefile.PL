@@ -1,6 +1,6 @@
 #!/usr/bin/perl -w
 
-# Copyright 2009, 2010, 2011, 2012, 2013 Kevin Ryde
+# Copyright 2009, 2010, 2011, 2012, 2013, 2014 Kevin Ryde
 
 # This file is part of Distlinks.
 #
@@ -27,7 +27,7 @@ WriteMakefile
    ABSTRACT     => 'URL link checking with database.',
    VERSION_FROM => 'distlinks',
    AUTHOR       => 'Kevin Ryde <user42@zip.com.au>',
-   LICENSE      => 'gpl',
+   LICENSE      => 'gpl_3',
    SIGN         => 1,
    EXE_FILES    => [ 'distlinks' ],
    MIN_PERL_VERSION => '5.010',

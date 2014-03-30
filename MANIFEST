@@ -14,8 +14,6 @@ devel/grep-usr-doc-html.pl
 devel/head.pl
 devel/PodLinkCheck.pm
 devel/regexp.pl
-devel/rsync.pl
-devel/rsyncd.conf
 devel/symlink.pl
 devel/unused.pl
 devel/url.pl
@@ -24,7 +22,6 @@ junk/URIFind.pm
 lib/App/Distlinks.pm
 lib/App/Distlinks/DBI.pm
 lib/App/Distlinks/FileFind.pm
-lib/App/Distlinks/LWP/Protocol/rsync.pm
 lib/App/Distlinks/URInFiles.pm
 lib/App/Distlinks/URIterator.pm
 Makefile.PL

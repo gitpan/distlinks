@@ -1,4 +1,4 @@
-# Copyright 2009, 2010, 2011, 2012, 2013 Kevin Ryde
+# Copyright 2009, 2010, 2011, 2012, 2013, 2014 Kevin Ryde
 
 # This file is part of Distlinks.
 #
@@ -30,7 +30,7 @@ use App::Distlinks;
 #use Smart::Comments;
 
 
-our $VERSION = 10;
+our $VERSION = 11;
 
 my %exclude_hosts
   = (
@@ -127,13 +127,6 @@ sub mech {
     require Net::Config;
     if (! @{$Net::Config::NetConfig{'nntp_hosts'}}) {
       $Net::Config::NetConfig{'nntp_hosts'} = [ 'localhost' ];
-    }
-
-    require Module::Util;
-    unless (Module::Util::find_installed('LWP::Protocol::rsync')) {
-      require App::Distlinks::LWP::Protocol::rsync;
-      LWP::Protocol::implementor('rsync',
-                                 'App::Distlinks::LWP::Protocol::rsync');
     }
 
     require WWW::Mechanize;
